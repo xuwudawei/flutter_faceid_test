@@ -21,12 +21,14 @@ class _LoginPageState extends State<LoginPage> {
 
   void displayDialog(context, title, text) => showDialog(
         context: context,
-        builder: (context) => AlertDialog(title: Text(title), content: Text(text)),
+        builder: (context) =>
+            AlertDialog(title: Text(title), content: Text(text)),
       );
 
   Future<String> attemptLogIn(String username, String password) async {
-    var res = await http.post("$SERVER_IP/login",
-        body: jsonEncode(<String, String>{'username': username, 'password': password}));
+    var res = await http.post(Uri.parse("$SERVER_IP/login"),
+        body: jsonEncode(
+            <String, String>{'username': username, 'password': password}));
     print("[res] : " + res.headers['authorization']);
     if (res.statusCode == 200) return res.headers['authorization'];
     return null;
@@ -57,9 +59,13 @@ class _LoginPageState extends State<LoginPage> {
         if (jwt != null) {
           storage.write(key: "jwt", value: jwt);
           // TODO : decode JwtTocken and store it to the secureStorage
-          Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage.fromBase64(jwt)));
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => HomePage.fromBase64(jwt)));
         } else {
-          displayDialog(context, "An Error Occurred", "No account was found matching that username and password");
+          displayDialog(context, "An Error Occurred",
+              "No account was found matching that username and password");
         }
       },
       child: Container(

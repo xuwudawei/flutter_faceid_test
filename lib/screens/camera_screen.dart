@@ -3,10 +3,11 @@ import 'dart:io';
 import 'package:camera/camera.dart';
 import 'package:faceid_mobile/screens/preview_screen.dart';
 import 'package:faceid_mobile/utils/utils.dart' as Utils;
-import 'package:firebase_ml_vision/firebase_ml_vision.dart';
+import 'package:google_ml_kit/google_ml_kit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:google_ml_kit/google_ml_kit.dart';
 import 'package:image/image.dart' as ImageLib;
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:path/path.dart';
@@ -23,6 +24,13 @@ enum Status { RIGHT, LEFT, SMILE, NEUTRAL, EYES_CLOSED, GLASSES }
 
 class _CameraScreenState extends State {
   // This class is responsible for establishing a connection to the device’s camera.
+
+  FaceDetector faceDetector =
+      GoogleMlKit.vision.faceDetector(FaceDetectorOptions(
+    enableTracking: true,
+    enableContours: true,
+    enableClassification: true,
+  ));
 
   CameraController controller;
   List cameras;
@@ -236,10 +244,12 @@ class _CameraScreenState extends State {
   }
 
   void _getImageAndDetectFaces(String path, BuildContext context) async {
-    final image = FirebaseVisionImage.fromFilePath(path);
-    final faceDetector = FirebaseVision.instance
-        .faceDetector(FaceDetectorOptions(enableClassification: true));
-    List<Face> faces = await faceDetector.processImage(image);
+    final image = InputImage.fromFilePath(path);
+    final faces = await faceDetector.processImage(image);
+    print('Found ${faces.length} faces');
+    // final faceDetector = FirebaseVision.instance
+    //     .faceDetector(FaceDetectorOptions(enableClassification: true));
+    // List<Face> faces = await faceDetector.processImage(image);
     if (mounted) {
       if (faces.length > 0) {
         if (faces.length > 1) {

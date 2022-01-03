@@ -1,5 +1,5 @@
 # faceid_mobile
-# full integrqtion with tensorflow and Facenet model
+# full integrqaion with tensorflow and Facenet model
 Using #MLKit and #Flutter to pre-process user images. The goal is to detect and crop the face in an image and determine 
 if it's in the right position, then upload it to a #flask backend that uses the #FaceNet model with #Tensorflow to encode the images.
 

@@ -25,7 +25,7 @@ apply plugin: 'com.android.application'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 29
 
     lintOptions {
         disable 'InvalidPackage'
@@ -34,7 +34,7 @@ android {
     defaultConfig {
         applicationId "com.naitcherif.faceid_mobile"
         minSdkVersion 21
-        targetSdkVersion 28
+        targetSdkVersion 29
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
@@ -45,15 +45,20 @@ android {
             signingConfig signingConfigs.debug
         }
     }
+
+    dependencies {
+        implementation platform('com.google.firebase:firebase-bom:28.1.0')
+    }
+
+    aaptOptions {
+        noCompress "tflite"  // Your model's file extension: "tflite", "lite", etc.
+    }
 }
 
 flutter {
     source '../..'
 }
 
-dependencies {
-    api 'com.google.firebase:firebase-ml-vision-face-model:17.0.2'
-//    api 'com.google.firebase:firebase-ml-vision:24.1.0'
-}
+    
 
 apply plugin: 'com.google.gms.google-services'

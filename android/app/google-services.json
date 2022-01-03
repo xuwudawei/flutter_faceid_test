@@ -1,34 +1,33 @@
 {
   "project_info": {
-    "project_number": "761833288005",
-    "firebase_url": "https://face-id-f70e3.firebaseio.com",
-    "project_id": "face-id-f70e3",
-    "storage_bucket": "face-id-f70e3.appspot.com"
+    "project_number": "697838847128",
+    "project_id": "face-gesture-detection-flutter",
+    "storage_bucket": "face-gesture-detection-flutter.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:761833288005:android:ed1cf304a3f1ac1b7e4e2c",
+        "mobilesdk_app_id": "1:697838847128:android:e2a1491843fa030f4c3ced",
         "android_client_info": {
           "package_name": "com.naitcherif.faceid_mobile"
         }
       },
       "oauth_client": [
         {
-          "client_id": "761833288005-f03uus4f5rstf37063f3g9jgf4ctvkej.apps.googleusercontent.com",
+          "client_id": "697838847128-di2m37bt3tk5bbiepda3f8b8idrrl9s7.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBCEID5bssSQhbM-5Cu2j_EJmKlgcUz-4w"
+          "current_key": "AIzaSyC5-YCA7IcEV53is9Wb5yBYc-kdrspMs44"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "761833288005-f03uus4f5rstf37063f3g9jgf4ctvkej.apps.googleusercontent.com",
+              "client_id": "697838847128-di2m37bt3tk5bbiepda3f8b8idrrl9s7.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

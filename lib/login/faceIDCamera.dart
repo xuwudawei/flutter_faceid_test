@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:google_ml_kit/google_ml_kit.dart';
 import 'package:intl/intl.dart';
 
 import 'package:flutter/material.dart';
@@ -8,7 +9,6 @@ import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:http/http.dart' as http;
 import 'package:image/image.dart' as ImageLib;
-import 'package:firebase_ml_vision/firebase_ml_vision.dart';
 
 class FaceIDCamera extends StatefulWidget {
   @override
@@ -38,9 +38,14 @@ class _FaceIDCameraState extends State<FaceIDCamera> {
   }
 
   void _getImageAndDetectFaces(String path, BuildContext context) async {
-    final image = FirebaseVisionImage.fromFilePath(path);
-    final faceDetector = FirebaseVision.instance
-        .faceDetector(FaceDetectorOptions(enableClassification: true));
+    final image = InputImage.fromFilePath(path);
+    final FaceDetector faceDetector =
+        GoogleMlKit.vision.faceDetector(FaceDetectorOptions(
+      enableTracking: true,
+      enableContours: true,
+      enableClassification: true,
+    ));
+
     List<Face> faces = await faceDetector.processImage(image);
     if (mounted) {
       if (faces.length > 0) {
